@@ -5,3 +5,6 @@ uvicorn
 python-multipart
 asyncpg
 pyjwt
+pytest
+pytest-asyncio
+httpx

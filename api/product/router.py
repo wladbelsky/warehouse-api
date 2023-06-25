@@ -43,7 +43,7 @@ async def create_product(product: ProductSchema, token: str = Depends(check_toke
         return ProductIdSchema.from_orm(product_model)
     
 
-@router.put("/{product_id}", response_model=ProductSchema)
+@router.put("/{product_id}", response_model=ProductIdSchema)
 async def update_product(product_id: int, product: ProductSchema, token: str = Depends(check_token)):
     db = await Database()
     async with db.get_session() as session:
@@ -57,7 +57,7 @@ async def update_product(product_id: int, product: ProductSchema, token: str = D
                 setattr(product, key, value)
         session.add(product_model)
         await session.commit()
-        return product
+        return ProductIdSchema.from_orm(product_model)
     
 @router.delete("/{product_id}")
 async def delete_product(product_id: int, token: str = Depends(check_token)):
