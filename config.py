@@ -1,10 +1,11 @@
+import os
 db_config = {
             "engine": "postgresql+asyncpg",
-            "host": "127.0.0.1",
-            "port": 5432,
-            "user": "postgres",
-            "password": "wladbelsky",
-            "database": "api",
+            "host": os.environ.get('DB_HOST'),
+            "port": os.environ.get('DB_PORT'),
+            "user": os.environ.get('DB_USER'),
+            "password": os.environ.get('DB_PASSWORD'),
+            "database": os.environ.get('DB_NAME'),
         }
 
 jwt_secret = 'secret'
